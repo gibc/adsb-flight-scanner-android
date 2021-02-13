@@ -40,7 +40,7 @@ import com.flightaware.android.flightfeeder.services.LocationService
 import com.flightaware.android.flightfeeder.util.MovingAverage
 import com.google.android.gms.maps.model.LatLng
 import java.util.*
-
+// gethub comment
 class MainActivity() : AppCompatActivity(), OnNavigationItemSelectedListener, OnItemClickListener, ServiceConnection {
     private var m1HertzUpdater: Thread? = null
     private var mAlert: AlertDialog? = null
