@@ -49,7 +49,7 @@ class DetectFramesThread : Thread() {
         i = 0
         while (i < SYNC_BITS && errorBits <= MAX_SYNC_ERRORS) {
             deltaPhi = phiDifference(mPhi[index + i * 2], mPhi[index + i * 2 + 1])
-            mask = 1L shl 35 - i
+            mask = 1L shl 35 - i  // gib - shl is shift left op
             if (pattern and mask == mask) {
                 // this should be a '1', above the center value
                 if (deltaPhi < mCenterDeltaPhi) errorBits++

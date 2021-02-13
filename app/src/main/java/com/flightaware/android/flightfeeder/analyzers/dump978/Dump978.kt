@@ -16,6 +16,8 @@ object Dump978 : Analyzer() {
     var sExit = false
     private val sListener: RtlTcpProcessListener = object : RtlTcpProcessListener {
         override fun onProcessStarted() {
+            // gib - decoder pipeline of processor threads
+            // gib - rtl -> phi -> detect frames -> decode frames
             // Start threads in this order so that each consumer thread is
             // running before its upstream producer
             if (Analyzer.Companion.sDecodeThread == null) {
@@ -31,6 +33,7 @@ object Dump978 : Analyzer() {
                 sConvertThread!!.start()
             }
             if (Analyzer.Companion.sReadThread == null) {
+                // gib - if debug build, read data from test data file
                 // if (BuildConfig.DEBUG)
                 // sReadThread = new ReadTestDataFileThread();
                 // else

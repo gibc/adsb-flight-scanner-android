@@ -3,6 +3,7 @@ package com.flightaware.android.flightfeeder.analyzers.dump978
 import com.flightaware.android.flightfeeder.BuildConfig
 import kotlin.experimental.and
 
+// gib - Phi is the angle of the signal in polar coordinate form, angle of the vector where A is magnitude of the vector
 class ConvertToPhiThread : Thread() {
     companion object {
         private val sPhiLut = Array(256) { IntArray(256) }
