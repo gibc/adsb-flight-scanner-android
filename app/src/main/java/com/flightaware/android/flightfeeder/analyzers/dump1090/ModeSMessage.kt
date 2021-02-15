@@ -25,8 +25,12 @@ class ModeSMessage(// Binary message.
     val format: Int
         get() = mBytes[0] shr 3
 
+    //public int getIcao() {
+    //    return (mBytes[1] << 16) | (mBytes[2] << 8) | mBytes[3];
+    //}
+    // gib - convet bytes 1,2, and 3 to 3 byte int max = 16777215
     val icao: Int
-        get() = mBytes[1] shl 16 or (mBytes[2] shl 8) or mBytes[3]
+        get() = (mBytes[1] shl 16) or (mBytes[2] shl 8) or mBytes[3]
 
     val isValid: Boolean
         get() = mCrc == 0

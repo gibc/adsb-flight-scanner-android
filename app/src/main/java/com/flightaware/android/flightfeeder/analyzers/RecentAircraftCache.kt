@@ -2,6 +2,7 @@ package com.flightaware.android.flightfeeder.analyzers
 
 import android.text.TextUtils
 import android.util.LruCache
+import java.lang.Exception
 import java.util.*
 
 object RecentAircraftCache {
@@ -18,8 +19,25 @@ object RecentAircraftCache {
         sRecentAircraft.evictAll()
     }
 
-    operator fun get(icao: Int): Aircraft {
-        return sRecentAircraft[icao]
+    operator fun get(icao: Int): Aircraft? {
+        // gib - line below throws unhandled exception
+        var ac:Aircraft? = null
+        var jnk = 5
+        try {
+            // gib - array index method NOT used in Java code and blows an exception here
+            //ac =  sRecentAircraft[icao]
+            ac = sRecentAircraft.get(icao)
+            if(ac == null)
+                jnk = 10
+        }
+        catch(e:Exception)
+        {
+            var msg = e.localizedMessage
+        }
+        if(ac == null)
+            jnk = 10
+
+        return ac
     }
 
     fun getActiveAircraftList(sort: Boolean): ArrayList<Aircraft> {

@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.text.Html
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import com.flightaware.android.flightfeeder.analyzers.Aircraft
 import java.util.*
 import java.util.regex.Pattern
 
-class PlaneAdapter(context: Context?, planeList: ArrayList<Aircraft>) : BaseAdapter() {
+class PlaneAdapter2(context: Context?, planeList: ArrayList<Aircraft>) : BaseAdapter() {
     private class ViewHolder {
         var icao: TextView? = null
         var ident: TextView? = null
@@ -47,11 +48,14 @@ class PlaneAdapter(context: Context?, planeList: ArrayList<Aircraft>) : BaseAdap
     }
 
     override fun getView(position: Int, view: View, parent: ViewGroup): View {
+        // gib - call to this funtion blows null ptr execption
+        Log.d("TAG1","get View position: " + position.toString() )
         var view = view
         if (view == null) view = mInflater.inflate(R.layout.item_active_plane, parent, false)
         var holder: ViewHolder? = null
         if (view.tag == null) {
             holder = ViewHolder()
+            Log.d("TAG","get View got holder"  )
             holder.icao = view.findViewById(R.id.icao) as TextView
             holder.ident = view.findViewById(R.id.ident) as TextView
             holder.squawk = view.findViewById(R.id.squawk) as TextView
@@ -63,6 +67,7 @@ class PlaneAdapter(context: Context?, planeList: ArrayList<Aircraft>) : BaseAdap
             holder.uat = view.findViewById(R.id.uat_flag) as ImageView
         } else holder = view.tag as ViewHolder
         val aircraft = getItem(position)
+        Log.d("TAG2","get View getting Aircarft" )
         if (mBoth) {
             if (aircraft!!.isUat) holder.uat!!.visibility = View.VISIBLE else holder.uat!!.visibility = View.GONE
         } else holder.uat!!.visibility = View.GONE
@@ -85,6 +90,7 @@ class PlaneAdapter(context: Context?, planeList: ArrayList<Aircraft>) : BaseAdap
         if (aircraft.velocity == null) holder.speed!!.text = null else holder.speed!!.setText(aircraft.velocity.toString())
         if (aircraft.heading == null) holder.heading!!.text = null else holder.heading!!.setText(aircraft.heading.toString())
         if (position % 2 == 0) view.setBackgroundResource(android.R.color.transparent) else view.setBackgroundResource(R.color.primary_light)
+        Log.d("ATAG","get View returning view" )
         return view
     }
 

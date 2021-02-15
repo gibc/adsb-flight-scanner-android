@@ -34,7 +34,7 @@ class ComputeMagnitudeVectorThread : Thread() {
         var q = 0
         try {
             var j = 0
-            while (j < data.size) {
+            while (j+1 < data.size) {
 
                 // In the original C file, the 'data' array here is an unsigned
                 // char
@@ -47,8 +47,17 @@ class ComputeMagnitudeVectorThread : Thread() {
                 // bitwise
                 // AND with 255 and store the result in an integer, and then
                 // continue with the algorithm.
-                i = (data[j] and 0xFF.toByte()).toInt()
-                q = (data[j + 1] and 0xFF.toByte()).toInt()
+                //i = (data[j] and 0xFF.toByte()).toInt()
+                i = data[j].toUByte().toInt()
+                if(i < 0)
+                    i = 0
+                //q = (data[j + 1] and 0xFF.toByte()).toInt()
+                q = data[j + 1].toUByte().toInt()
+                if(q < 0)
+                    q=0
+                // gib = next line generates out of bounds execption
+                if(j/2 >= data.size)
+                    j = 0
                 vector[j / 2] = sMagLut[i][q]
                 j += 2
             }
