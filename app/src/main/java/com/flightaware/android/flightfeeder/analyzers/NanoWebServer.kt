@@ -11,6 +11,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.*
 import java.util.*
+import kotlin.jvm.Throws
 
 class NanoWebServer @JvmOverloads constructor(private val mContext: Context, ipAddress: String? = null) : NanoHTTPD(ipAddress, 8080) {
     private val mCacheDir: File
