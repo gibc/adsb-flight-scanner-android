@@ -25,7 +25,7 @@ class ComputeMagnitudeVectorThread : Thread() {
             buildMagnitudeLookUpTable()
         }
     }
-
+// get hum comment
     private fun computeMagnitudeVector(data: ByteArray) {
         // gib - flow control problem, loop below never completes so
         // nothing added to MagnitudeVectorQueue???
