@@ -7,6 +7,7 @@ import com.flightaware.android.flightfeeder.BuildConfig
 import com.flightaware.android.flightfeeder.analyzers.Analyzer
 import marto.rtl_tcp_andro.core.RtlTcp
 import marto.rtl_tcp_andro.core.RtlTcp.RtlTcpProcessListener
+import kotlin.jvm.Throws
 
 object Dump978 : Analyzer() {
     private var sConvertThread: Thread? = null

@@ -3,8 +3,9 @@ package marto.rtl_tcp_andro.core
 import android.os.SystemClock
 import android.util.Log
 import com.flightaware.android.flightfeeder.BuildConfig
+import kotlin.jvm.Throws
 
-object RtlTcp {
+object RtlTcpOld {
     val EXIT_CANNOT_CLOSE: Int = 6
     val EXIT_CANNOT_RESTART: Int = 5
     val EXIT_FAILED_TO_OPEN_DEVICE: Int = 4
@@ -36,7 +37,7 @@ object RtlTcp {
         if (BuildConfig.DEBUG) Log.d(TAG, "Device open")
     }
 
-    private external fun open(args: String, descriptor: Int,
+    external fun open(args: String, descriptor: Int,
                               usbFsPath: String) // throws RtlTcpException;
 
     private fun printf_receiver(data: String) {

@@ -38,6 +38,7 @@ object UsbDvbDetector {
         val deviceIterator: Iterator<UsbDevice> = deviceList.values.iterator()
         while (deviceIterator.hasNext()) {
             val device = deviceIterator.next()
+            return device  // gib - can't make device ids work in java version
             val ident = device.vendorId.toString() + "-" + device.productId
             if (sDevices.contains(ident)) return device
         }

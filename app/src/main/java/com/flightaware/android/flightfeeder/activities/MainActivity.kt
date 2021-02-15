@@ -38,6 +38,7 @@ import com.flightaware.android.flightfeeder.services.ControllerService
 import com.flightaware.android.flightfeeder.services.ControllerService.LocalBinder
 import com.flightaware.android.flightfeeder.services.LocationService
 import com.flightaware.android.flightfeeder.util.MovingAverage
+import com.flightaware.android.flightfeeder.util.UsbDvbDetector
 import com.google.android.gms.maps.model.LatLng
 import java.util.*
 // gethub comment
@@ -235,12 +236,15 @@ class MainActivity() : AppCompatActivity(), OnNavigationItemSelectedListener, On
                 if (mAlert == null || !mAlert!!.isShowing) showNoDongle()
                 if (mService != null) mService!!.stopScanning(false)
             } else {
-//                device = UsbDvbDetector.isValidDeviceConnected(this);
+                device = UsbDvbDetector.isValidDeviceConnected(this); // gib - commended in from initial code
                 if (device != null) {
                     val usbManager = getSystemService(Context.USB_SERVICE) as UsbManager
-                    if ((usbManager.hasPermission(device)
-                                    || App.Companion.sPrefs!!.getBoolean("usb_permission_granted",
-                                    false))) startListening(device!!) else {
+                    if ((usbManager.hasPermission(device)))  // gib - fix from java version
+                                    //|| App.Companion.sPrefs!!.getBoolean("usb_permission_granted",
+                                    //false)))
+                        startListening(device!!)
+
+                    else {
                         val permission = PendingIntent.getBroadcast(
                                 this, 0, Intent(ACTION_USB_PERMISSION), 0)
                         usbManager.requestPermission(device, permission)

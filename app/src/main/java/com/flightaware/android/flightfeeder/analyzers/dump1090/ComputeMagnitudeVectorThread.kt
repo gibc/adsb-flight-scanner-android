@@ -27,6 +27,8 @@ class ComputeMagnitudeVectorThread : Thread() {
     }
 
     private fun computeMagnitudeVector(data: ByteArray) {
+        // gib - flow control problem, loop below never completes so
+        // nothing added to MagnitudeVectorQueue???
         val vector = IntArray(data.size / 2)
         var i = 0
         var q = 0

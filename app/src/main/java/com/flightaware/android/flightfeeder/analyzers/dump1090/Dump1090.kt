@@ -8,6 +8,7 @@ import com.flightaware.android.flightfeeder.analyzers.Analyzer
 import com.flightaware.android.flightfeeder.analyzers.dump1090.Decoder.CorrectionLevel
 import marto.rtl_tcp_andro.core.RtlTcp
 import marto.rtl_tcp_andro.core.RtlTcp.RtlTcpProcessListener
+import kotlin.jvm.Throws
 
 object Dump1090 : Analyzer() {
     private var sComputeThread: Thread? = null

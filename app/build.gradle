@@ -12,6 +12,10 @@ android {
         targetSdkVersion 24
         versionCode 29
         versionName "2.0.29"
+        // gib - load library fix
+        ndk {
+            abiFilters "armeabi-v7a", "x86", "armeabi", "mips"
+        }
     }
     buildTypes {
         release {
