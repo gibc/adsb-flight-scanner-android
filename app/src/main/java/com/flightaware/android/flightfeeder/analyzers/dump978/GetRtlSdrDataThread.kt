@@ -32,9 +32,10 @@ class GetRtlSdrDataThread : Thread() {
             val buffer = ByteArray(BUFFER_SIZE)
             var length = 0
             while (!Dump978.sExit) { // && length != BUFFER_SIZE) {
-                length = stream.read(buffer)
-                if (length != BUFFER_SIZE) continue
-                RtlSdrDataQueue.offer(Arrays.copyOf(buffer, length))
+                //length = stream.read(buffer)
+                //if (length != BUFFER_SIZE) continue
+                //RtlSdrDataQueue.offer(Arrays.copyOf(buffer, length))
+                RtlSdrDataQueue.offer(Arrays.copyOf(buffer, stream.read(buffer)))  // gib - from dump1090
             }
         } catch (e: Exception) {
             // swallow;

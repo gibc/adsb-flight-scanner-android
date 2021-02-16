@@ -40,9 +40,9 @@ class ConvertToPhiThread : Thread() {
         var i = 0
         var q = 0
         var j = 0
-        while (j < data.size) {
-            i = (data[j] and 0xFF.toByte()).toInt()
-            q = (data[j + 1] and 0xFF.toByte()).toInt()
+        while (j+1 < data.size) {
+            i = (data[j].toUByte() and (0xFF).toUByte()).toInt()
+            q = (data[j + 1].toUByte() and (0xFF).toUByte()).toInt()
             phi[j / 2] = sPhiLut[i][q]
             j += 2
         }

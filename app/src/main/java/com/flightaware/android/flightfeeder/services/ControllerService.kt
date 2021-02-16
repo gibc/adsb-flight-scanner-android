@@ -169,7 +169,8 @@ class ControllerService : Service(), OnSharedPreferenceChangeListener {
     fun startScanning() {
         Analyzer.Companion.sFrameCount = 0
         MovingAverage.reset()
-        val scanMode: String = App.Companion.sPrefs!!.getString("pref_scan_mode", "ADSB")
+        //val scanMode: String = App.Companion.sPrefs!!.getString("pref_scan_mode", "ADSB") gib - put back
+        val scanMode = "UAT"
         try {
             if (scanMode == "ADSB") {
                 isUat = false

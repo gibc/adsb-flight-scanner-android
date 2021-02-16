@@ -183,10 +183,16 @@ class DetectFramesThread : Thread() {
         val lenbits = mPhi.size / 2 - SYNC_BITS - UPLINK_FRAME_BITS
         var bit = 0
         while (bit < lenbits) {
-            syncA = syncA shl 1 or if (phiDifference(mPhi[bit * 2],
-                            mPhi[bit * 2 + 1]) > mCenterDeltaPhi) 1 else (0 and SYNC_MASK.toInt()).toLong()
-            syncB = syncB shl 1 or if (phiDifference(mPhi[bit * 2 + 1],
-                            mPhi[bit * 2 + 2]) > mCenterDeltaPhi) 1 else (0 and SYNC_MASK.toInt()).toLong()
+            syncA = (syncA shl 1 or if (phiDifference(mPhi[bit * 2], mPhi[bit * 2 + 1]) > mCenterDeltaPhi)
+                1
+            else
+                0) and SYNC_MASK
+
+            syncB = (syncB shl 1 or if (phiDifference(mPhi[bit * 2 + 1], mPhi[bit * 2 + 2]) > mCenterDeltaPhi)
+                1
+            else
+                0) and SYNC_MASK
+
             if (bit < SYNC_BITS) {
                 bit++
                 continue  // haven't fully populated sync0/1 yet
